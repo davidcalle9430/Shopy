@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>Hola Mundo</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <h1>Todos los productos</h1>
+    <div>
+      {% for pr in products %}
+           <a href="{% url 'products.views.product_detail' pk=pr.pk %}"><h3>{{pr.name}}</h3></a>
+           <h5>{{pr.description}}<h5>
+           <img src="{{pr.image.url}}" alt="" />
+
+      {% endfor %}
+    </div>
+  </body>
+</html>
