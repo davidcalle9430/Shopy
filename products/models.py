@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from clients.models import Client
 
 class Product(models.Model):
     name = models.CharField(max_length = 255)
@@ -14,3 +15,14 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('id',)
+
+class Favourite(models.Model):
+    user = models.ForeignKey(Client)
+    product = models.ForeignKey(Product)
+
+
+    def __str__(self):
+        return '%s %s' % (self.user.name,  self.product.name)    
+    class Meta:
+        verbose_name = 'Favourite'
+        verbose_name_plural = 'Favourites'
